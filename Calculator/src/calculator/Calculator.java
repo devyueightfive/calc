@@ -6,16 +6,12 @@
 package calculator;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 
 /**
  *
  * @author yuri
  */
 public class Calculator {
-
-//    ArrayList<Expression> operations = new ArrayList();
-
 
     public double calculate(String userInput) throws ParseException, NumberFormatException {
         if (Expression.isValidNumberOfParantheses(userInput) == false) {
@@ -33,10 +29,12 @@ public class Calculator {
 //      Check for Simple Expressions.
 //      In Simple case <value> is calculated <value> = <unar>*Double(<expr>)
         for (Value v : exprs) {
-            if (Expression.isSimpleExpression(v.expr)) {
+            if (Expression.isFloatNumber(v.expr)) {
                 v.isSimple = true;
                 int unar = v.unarOperator ? (-1) : 1;
                 v.value = unar * Double.parseDouble(v.expr);
+//                v.expr   = String.valueOf(v.value);
+//                v.unarOperator = false;
             }
         }
 
@@ -49,7 +47,7 @@ public class Calculator {
             }
         }
 
-        return evalSimpleExpression(exprs);
+        return evalSimpleBinaryExpression(exprs);
     }
 
     /**
@@ -59,7 +57,7 @@ public class Calculator {
      * parantheses). String like "1*2+3" represented as ["1*","2+","3"]
      * @return calculation of the Simple Expression.
      */
-    double evalSimpleExpression(Expression simpleExpression) {
+    double evalSimpleBinaryExpression(Expression simpleExpression) {
         int bound = simpleExpression.size();
 
 //      Calculate all operators like "*" and "/"
