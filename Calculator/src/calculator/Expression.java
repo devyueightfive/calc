@@ -52,10 +52,8 @@ public class Expression extends ArrayList<Value> {
                     result.add(value);
                 }
                 postStatus = "value";
-            } else if (
-                    c == '(' 
-                    && 
-                    (i == 0 
+            } else if (c == '('
+                    && (i == 0
                     || postStatus.equals("operator")
                     || postStatus.equals("unar-operator"))) {
                 i = positionOfClosingParantheses(i, input);
@@ -96,8 +94,8 @@ public class Expression extends ArrayList<Value> {
     public static boolean isFloatNumber(String expr) {
         return Pattern.matches("^(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))$", expr);
     }
-    
-    public static boolean isSimpleTernaryExpression(String expr){
+
+    public static boolean isSimpleTernaryExpression(String expr) {
         return Pattern.matches("^(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))[><=]"
                 + "(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))[?]"
                 + "(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))[:]"
@@ -129,7 +127,9 @@ public class Expression extends ArrayList<Value> {
     }
 
     static boolean isValidPointers(String input) {
-        boolean error = Pattern.matches("(^(.)*\\.[0-9]*\\.(.)*$)|(^[^0-9]+\\.[^0-9]+$)|(^\\.$)", input);
+        boolean error = Pattern.matches("(^(.)*\\.[0-9]*\\.(.)*$)"
+                + "|(^(.)*[^0-9]+\\.[^0-9]+(.)*$)"
+                + "|(^\\.$)", input);
         return !error;
     }
 }
