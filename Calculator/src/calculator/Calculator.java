@@ -54,7 +54,7 @@ public class Calculator {
      * *
      *
      * @param simpleExpression represent a Simple Expression (without
-     * parantheses). String like "1*2+3" represented as ["1*","2+","3"]
+ parantheses). String like "1*2+3" represented as ["1*","2+","3"]
      * @return calculation of the Simple Expression.
      */
     double evalSimpleBinaryExpression(Expression simpleExpression) {
@@ -97,6 +97,21 @@ public class Calculator {
         }
         System.out.println(simpleExpression.get(0).value);
         return simpleExpression.get(0).value;
+    }
+
+    static double evalSimpleTernaryExpression(String input) {
+
+        int positionOfQuestionSign = input.indexOf('?');
+        int positionOfColonSign = input.indexOf(':');
+        String logicalExpression = input.substring(0, positionOfQuestionSign);
+        String trueReturn = input.substring(positionOfQuestionSign + 1, positionOfColonSign);
+        String falseReturn = input.substring(positionOfColonSign + 1, input.length());;
+        return 0;
+    }
+
+    static double evalSimpleLogicalExpression(String input) {
+        if (input.indexOf("<=")) {
+        }
     }
 
 }
